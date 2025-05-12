@@ -1,3 +1,7 @@
+INFELIZMENTE NAO DEU PARA FAZER TUDO POR CONTA DE TEMPO (3h pra fazer tudo isso não dá)
+
+
+
 # 🐾 PetCare Dashboard
 
 Sistema web criado com React para gestão de uma clínica veterinária fictícia. A aplicação consome dados da MockAPI, utiliza autenticação fake com contexto global e integra com a Dog CEO API para exibir imagens de cães da raça Akita.
