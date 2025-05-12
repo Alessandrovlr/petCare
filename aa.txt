@@ -1,0 +1,200 @@
+# **🧪 Prova Prática – React: PetCare Dashboard(Duração: 4h)**
+
+---
+
+## **🐾 Tema: Clínica Veterinária PetCare**
+
+Você foi contratado para desenvolver um **Painel Web** para uma clínica fictícia
+chamada **PetCare**. O sistema permite que funcionários façam login e visualizem os 
+pets cadastrados, suas informações básicas e imagens reais de cachorros.
+
+---
+
+---
+
+## **🎯 Objetivos**
+
+Construa um aplicativo React com as seguintes características:
+
+| **Funcionalidade** | **Tecnologias Requeridas** |
+| --- | --- |
+| Tela de login | axios, react-router-dom, useContext |
+| Proteção de rotas | react-router-dom, PrivateRoute |
+| Home interativa com dados públicos | axios, useEffect, useState |
+| Dashboard com dados protegidos | axios, useContext, useEffect |
+| Integração com API pública de cachorros | [Dog CEO API](https://dog.ceo/dog-api) |
+
+---
+
+## **📁 Estrutura de Páginas**
+
+### **1. 🏠 Home (/)**
+
+Página pública com informações dinâmicas.
+
+### **O que deve conter:**
+
+- Mensagem de boas-vindas
+- Chamada à Fake API (GET /pets) via axios
+    - Exibir os **3 pets mais recentes** com: nome, raça e tutor
+
+Para cada pet, mostrar **uma imagem aleatória de cachorro** com:
+
+GET https://dog.ceo/api/breeds/image/random
+
+- 
+- Botão: **"Entrar como Funcionário"** (vai para /login)
+
+---
+
+### **2. 🔐 Login (/login)**
+
+Autenticação via MockAPI.
+
+### **Requisitos:**
+
+- Inputs: email e senha
+
+Envio via POST para um endpoint do MockAPI:
+
+POST https://mockapi.io/api/v1/login
+
+- 
+- Se bem-sucedido:
+    - Salvar o token e o usuário no contexto
+    - Redirecionar para /dashboard
+- Exibir erro amigável se falhar
+
+---
+
+### **3. 📊 Dashboard (/dashboard)**
+
+Área privada com dados protegidos.
+
+### **O que deve conter:**
+
+- Boas-vindas ao usuário logado (ex: “Olá, Dra. Paula!”)
+- Requisição a GET /pets para listar todos os pets:
+    - Nome
+    - Raça
+    - Idade
+    - Tutor
+    - Imagem aleatória da Dog API
+- Botão “Sair” → limpa o contexto e redireciona para /login
+
+---
+
+### **🔐 Proteção de Rotas**
+
+- Criar componente PrivateRoute
+    - Se não houver token, redirecionar para /login
+
+---
+
+## **🧱 Estrutura Sugerida de Pastas**
+
+src/
+
+├── App.jsx
+
+├── main.jsx
+
+├── context/
+
+│   └── AuthContext.jsx
+
+├── pages/
+
+│   ├── Home.jsx
+
+│   ├── Login.jsx
+
+│   └── Dashboard.jsx
+
+├── components/
+
+│   ├── PetCard.jsx
+
+│   └── PrivateRoute.jsx
+
+---
+
+## **🔗 MockAPI (Fake Backend)**
+
+Você deve criar 2 recursos no [https://mockapi.io](https://mockapi.io/):
+
+### **1. login (autenticação simulada)**
+
+- Endpoint: POST /login
+- Exemplo de login:
+
+{
+
+"email": "vet@petcare.com",
+
+"password": "123456"
+
+}
+
+- Resposta:
+
+{
+
+"token": "abc123",
+
+"user": {
+
+"name": "Dra. Paula"
+
+}
+
+}
+
+### **2. pets (dados públicos e privados)**
+
+- Campos: name, breed, age, owner
+- Exemplo de item:
+
+{
+
+"id": "1",
+
+"name": "Rex",
+
+"breed": "Labrador",
+
+"age": "5",
+
+"owner": "João"
+
+}
+
+---
+
+## **🐶 API Pública: Dog CEO**
+
+Usar para buscar imagens:
+
+GET https://dog.ceo/api/breeds/image/random
+
+---
+
+## **✅ Avaliação (10 pontos)**
+
+| **Critério** | **Pontos** |
+| --- | --- |
+| Login com Fake API | 2 |
+| Uso de useContext para autenticação | 2 |
+| Proteção de rota com PrivateRoute | 1 |
+| Home com chamada à Fake API + Dog API | 2 |
+| Dashboard funcional com listagem de pets | 2 |
+| Código limpo e navegação | 1 |
+| **Total** | **10** |
+
+---
+
+## **🚀 Extras (Bônus)**
+
+- Filtro por raça no dashboard
+- Mensagem de loading ao buscar dados
+- Animações com Tailwind ou CSS Modules
